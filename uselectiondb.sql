@@ -19,6 +19,53 @@ SET row_security = off;
 SET default_tablespace = '';
 
 --
+-- Name: primary_results_csv; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.primary_results_csv (
+    state character varying(1024),
+    state_abbreviation character varying(1024),
+    county character varying(1024),
+    fips integer,
+    party character varying(1024),
+    candidate character varying(1024),
+    votes integer,
+    fraction_votes double precision
+);
+
+
+ALTER TABLE public.primary_results_csv OWNER TO postgres;
+
+--
+-- Name: Sum_of_votes_per_candidate; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public."Sum_of_votes_per_candidate" AS
+ SELECT DISTINCT prc.candidate,
+    sum(prc.votes) AS sum
+   FROM public.primary_results_csv prc
+  GROUP BY prc.candidate
+  ORDER BY prc.candidate;
+
+
+ALTER TABLE public."Sum_of_votes_per_candidate" OWNER TO postgres;
+
+--
+-- Name: Sum_of_votes_per_state; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public."Sum_of_votes_per_state" AS
+ SELECT DISTINCT prc.state,
+    prc.state_abbreviation,
+    sum(prc.votes) AS sum
+   FROM public.primary_results_csv prc
+  GROUP BY prc.state, prc.state_abbreviation
+  ORDER BY prc.state;
+
+
+ALTER TABLE public."Sum_of_votes_per_state" OWNER TO postgres;
+
+--
 -- Name: county_facts_csv; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -93,24 +140,6 @@ CREATE TABLE public.county_facts_dictionary_csv (
 
 
 ALTER TABLE public.county_facts_dictionary_csv OWNER TO postgres;
-
---
--- Name: primary_results_csv; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.primary_results_csv (
-    state character varying(1024),
-    state_abbreviation character varying(1024),
-    county character varying(1024),
-    fips integer,
-    party character varying(1024),
-    candidate character varying(1024),
-    votes integer,
-    fraction_votes double precision
-);
-
-
-ALTER TABLE public.primary_results_csv OWNER TO postgres;
 
 --
 -- Data for Name: county_facts_csv; Type: TABLE DATA; Schema: public; Owner: postgres
