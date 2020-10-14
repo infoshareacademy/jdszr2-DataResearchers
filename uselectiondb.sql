@@ -42,13 +42,25 @@ ALTER TABLE public.primary_results_csv OWNER TO postgres;
 
 CREATE VIEW public."Sum_of_votes_per_candidate" AS
  SELECT DISTINCT prc.candidate,
-    sum(prc.votes) AS sum
+    sum(prc.votes) AS votes
    FROM public.primary_results_csv prc
-  GROUP BY prc.candidate
-  ORDER BY prc.candidate;
+  GROUP BY prc.candidate;
 
 
 ALTER TABLE public."Sum_of_votes_per_candidate" OWNER TO postgres;
+
+--
+-- Name: Sum_of_votes_per_candidate_with_%; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public."Sum_of_votes_per_candidate_with_%" AS
+ SELECT sovpc.candidate,
+    sovpc.votes,
+    ((sovpc.votes)::numeric / sum(sovpc.votes) OVER ()) AS percentage_of_all
+   FROM public."Sum_of_votes_per_candidate" sovpc;
+
+
+ALTER TABLE public."Sum_of_votes_per_candidate_with_%" OWNER TO postgres;
 
 --
 -- Name: Sum_of_votes_per_state; Type: VIEW; Schema: public; Owner: postgres
@@ -140,6 +152,58 @@ CREATE TABLE public.county_facts_dictionary_csv (
 
 
 ALTER TABLE public.county_facts_dictionary_csv OWNER TO postgres;
+
+--
+-- Name: votes_per_candidate_per_state; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.votes_per_candidate_per_state AS
+ SELECT DISTINCT prc.state,
+    prc.party,
+    prc.candidate,
+    sum(prc.votes) AS votes
+   FROM public.primary_results_csv prc
+  GROUP BY prc.state, prc.party, prc.candidate
+  ORDER BY prc.state;
+
+
+ALTER TABLE public.votes_per_candidate_per_state OWNER TO postgres;
+
+--
+-- Name: winning_per_county; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.winning_per_county AS
+ SELECT DISTINCT ON (primary_results_csv.county) primary_results_csv.county,
+    primary_results_csv.party,
+    primary_results_csv.candidate,
+    primary_results_csv.votes,
+    primary_results_csv.fraction_votes
+   FROM public.primary_results_csv
+  ORDER BY primary_results_csv.county, primary_results_csv.votes DESC;
+
+
+ALTER TABLE public.winning_per_county OWNER TO postgres;
+
+--
+-- Name: winning_per_state; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.winning_per_state AS
+ SELECT t.state,
+    t.party,
+    t.candidate,
+    t.votes
+   FROM ( SELECT vpcps.state,
+            vpcps.party,
+            vpcps.candidate,
+            vpcps.votes,
+            max(vpcps.votes) OVER (PARTITION BY vpcps.state) AS max_votes
+           FROM public.votes_per_candidate_per_state vpcps) t
+  WHERE (t.votes = t.max_votes);
+
+
+ALTER TABLE public.winning_per_state OWNER TO postgres;
 
 --
 -- Data for Name: county_facts_csv; Type: TABLE DATA; Schema: public; Owner: postgres
