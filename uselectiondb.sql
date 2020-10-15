@@ -154,6 +154,21 @@ CREATE TABLE public.county_facts_dictionary_csv (
 ALTER TABLE public.county_facts_dictionary_csv OWNER TO postgres;
 
 --
+-- Name: votes_for_party_per_county; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.votes_for_party_per_county AS
+ SELECT prc.county,
+    prc.party,
+    sum(prc.votes) AS votes
+   FROM public.primary_results_csv prc
+  GROUP BY prc.county, prc.party
+  ORDER BY prc.county;
+
+
+ALTER TABLE public.votes_for_party_per_county OWNER TO postgres;
+
+--
 -- Name: votes_per_candidate_per_state; Type: VIEW; Schema: public; Owner: postgres
 --
 
