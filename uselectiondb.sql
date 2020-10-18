@@ -154,6 +154,7 @@ CREATE VIEW public.all_together AS
     prc.candidate,
     prc.votes,
     prc.fraction_votes,
+    cfc.pst045214,
     cfc.edu685213,
     cfc.edu635213,
     cfc.vet605213,
@@ -183,6 +184,7 @@ CREATE VIEW public.all_together_dropped AS
     at2.candidate,
     at2.votes,
     at2.fraction_votes,
+    at2.pst045214,
     at2.edu685213,
     at2.edu635213,
     at2.vet605213,
@@ -222,6 +224,7 @@ CREATE VIEW public.votes_for_party_per_county AS
     at2.fips,
     at2.party,
     sum(at2.votes) AS votes,
+    at2.pst045214,
     at2.edu685213,
     at2.edu635213,
     at2.vet605213,
@@ -235,7 +238,7 @@ CREATE VIEW public.votes_for_party_per_county AS
     at2.pop060210
    FROM public.all_together at2
   WHERE ((at2.edu635213 IS NOT NULL) AND (at2.party IS NOT NULL))
-  GROUP BY at2.county, at2.fips, at2.party, at2.edu635213, at2.edu685213, at2.vet605213, at2.inc110213, at2.inc910213, at2.pvy020213, at2.bza010213, at2.bza110213, at2.bza115213, at2.sbo001207, at2.pop060210
+  GROUP BY at2.county, at2.fips, at2.party, at2.pst045214, at2.edu635213, at2.edu685213, at2.vet605213, at2.inc110213, at2.inc910213, at2.pvy020213, at2.bza010213, at2.bza110213, at2.bza115213, at2.sbo001207, at2.pop060210
   ORDER BY at2.county;
 
 
@@ -250,6 +253,7 @@ CREATE VIEW public.votes_for_democrat_per_county AS
     vfppc.fips,
     vfppc.party,
     vfppc.votes,
+    vfppc.pst045214,
     vfppc.edu685213,
     vfppc.edu635213,
     vfppc.vet605213,
@@ -277,6 +281,7 @@ CREATE VIEW public.votes_for_republican_per_county AS
     vfppc.fips,
     vfppc.party,
     vfppc.votes,
+    vfppc.pst045214,
     vfppc.edu685213,
     vfppc.edu635213,
     vfppc.vet605213,
