@@ -20,7 +20,19 @@ array [
 	round(stddev(secondary_education)),
 	round(stddev(higher_education))] as STD
 from (
-	select distinct atd.fips, atd.county, wpc.party ,wpc.candidate ,100 - atd.edu635213 as primary_education ,atd.edu635213-atd.edu685213 as secondary_education, atd.edu685213 as higher_education
-	from all_together_dropped atd 
-	full join winning_per_county wpc on atd.fips = wpc.fips ) epc
+	(select county, party, candidate, votes ,100 - edu635213 as primary_education ,edu635213-edu685213 as secondary_education, edu685213 as higher_education
+		from (
+			select *
+			from winning_per_county wpc  
+			join county_facts_csv cfc on wpc.fips = cfc.fips) xxx
+			where party like('Democrat')
+			limit 939)
+	union (
+	select county, party, candidate, votes ,100 - edu635213 as primary_education ,edu635213-edu685213 as secondary_education, edu685213 as higher_education
+		from (
+			select *
+			from winning_per_county wpc  
+			join county_facts_csv cfc on wpc.fips = cfc.fips) xxx
+			where party like('Republican')
+			limit 939)) epc
 group by party 
