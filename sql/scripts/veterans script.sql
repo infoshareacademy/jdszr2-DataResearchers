@@ -21,9 +21,3 @@ from (
 				where party like('Republican')
 				limit 939)) xxxx
 group by party 
-<<<<<<< HEAD
-	
-	
-	
-=======
->>>>>>> grzegorz
