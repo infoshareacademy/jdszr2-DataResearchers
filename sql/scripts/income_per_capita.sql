@@ -9,6 +9,7 @@ democrats as (
 		INC910213 as income
 	from facts_and_winners
 	where party like('Democrat')
+	order by random() limit 939	
 ),
 republicans as (
 	select
@@ -16,6 +17,7 @@ republicans as (
 		INC910213 as income
 	from facts_and_winners
 	where party like('Republican')
+	order by random() limit 939
 ),
 income as (
 	select * from democrats
@@ -39,4 +41,3 @@ group by income.party
 -------------|------------------|-----|------|-----|-----------------|
 -- Democrat  |23291.840255591054|18750| 22381|26271|6854.316450396281|
 -- Republican|23108.782515991471|20052| 22551|25378|4573.073489329557|
-
