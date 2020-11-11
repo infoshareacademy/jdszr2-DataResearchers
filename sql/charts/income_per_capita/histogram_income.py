@@ -14,13 +14,10 @@ fig = sns.distplot(a=df[df['party']=='Democrat']["income"],
 fig = sns.distplot(a=df[df['party']=='Republican']["income"],
                    hist=True, bins=25, kde=False, color="red",
                    label='Republicans')
-#income_stats = df["income"].describe()
-#print(income_stats, type(income_stats))
-#income_stats.to_csv("/Users/michal/infoshare/projekt_zespolowy_sql/jdszr2-DataResearchers/sql/csv/income_per_capita_stats.csv",
+
+#df["income"].describe().to_csv("/Users/michal/infoshare/projekt_zespolowy_sql/jdszr2-DataResearchers/sql/csv/income_per_capita_stats.csv",
 #    sep=';', header=True)
 fig.legend()
 fig.set(title='');
 fig.set(ylabel='Counties', xlabel='Income per capita')
 plt.show()
-
-print(df_rep)
