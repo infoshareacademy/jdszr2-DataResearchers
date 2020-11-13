@@ -13,4 +13,3 @@ https://www.kaggle.com/benhamner/2016-us-election#county_facts_dictionary.csv
 # Status
 
 ## In progress
-![Specs](http://i.imgur.com/aV8o3rE.png)
