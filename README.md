@@ -3,7 +3,9 @@
 ## SQL
 
 ### US Elections
-Does demography determine who people vote for?
+![Specs](https://i.pinimg.com/originals/a0/4c/78/a04c78cc4ab87043999d73f6eb4e1ce6.png)
+
+#### Does demography determine who people vote for?
 Overview of general demographic statistics, interesting cases and anomalies
 
 Kaggle link:
