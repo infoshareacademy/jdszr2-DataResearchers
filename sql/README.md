@@ -2,7 +2,7 @@
 
 ## Does demography determine who people vote for?
 
-<img src="https://www.dropbox.com/s/7p8f0ucs7gqwoy3/mapka.png?dl=0" width="80%">
+<img src="https://i.ibb.co/pj0Pn6X/mapka.png" width="80%">
 
 Overview of general demographic statistics, interesting cases and anomalies
 
