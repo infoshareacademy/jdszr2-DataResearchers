@@ -7,8 +7,8 @@ https://www.kaggle.com/benhamner/2016-us-election#county_facts_dictionary.csv
 <img src="https://i.ibb.co/pj0Pn6X/mapka.png" width="80%">
 
 ##  **Table of contents**
-1. [Methodology](#--methodology-)
-2. [Variables](#--variables-)
+1. [Methodology](#methodology)
+2. [Variables](#variables)
 
 
 ## **Methodology**
