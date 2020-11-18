@@ -9,16 +9,20 @@ https://www.kaggle.com/benhamner/2016-us-election#county_facts_dictionary.csv
 ##  **Table of contents**
 1. [Methodology](#methodology)
 2. [Variables](#variables)
+<<<<<<< HEAD
    1. [Home-ownership rate](#Home-ownership-rate)
    2. [Veterans factor](#Veterans-factor)
    3. [White alone](#White-alone)
    4. [Methodology](#methodology)
+=======
+>>>>>>> 7f907aacfee34e3793e78b28b431922486132efb
 
 
 ## **Methodology**
 
 <img src="https://i.ibb.co/RTTTDNM/metodology.png" width="80%">
 
+<<<<<<< HEAD
 ### **Technology**
 In this project we mainly used:
 * PostgreSQL 13.1
@@ -27,6 +31,11 @@ In this project we mainly used:
   * pandas
   * seaborn
 * Tableau
+=======
+### **How?**
+To answer the main question we needed to obtain data from kaggle.
+We uploaded data to PostgreSQL and started working on it.
+>>>>>>> 7f907aacfee34e3793e78b28b431922486132efb
 
 ### **Data**
 Our database consisted 3 tables:
@@ -34,6 +43,7 @@ Our database consisted 3 tables:
 * county_facts (*information about counties*)
 * county_facts_dictionary (*described variables from county_facts table*)
 
+<<<<<<< HEAD
 ### **Let's get it started**
 After creating database in PostgreSQL we started to dig into given data. We found out that not every county in primary_results table has it's equivalent in county_facts table. In short, there was lack of data about some counties.
 | primary_results | county_facts| difference  |
@@ -42,6 +52,8 @@ After creating database in PostgreSQL we started to dig into given data. We foun
 
 In order to answer given question, we needed to drop those counties which are not fully described.
 
+=======
+>>>>>>> 7f907aacfee34e3793e78b28b431922486132efb
 ##  **Variables**
 We have chosen 7 main variables:
 * Home-ownership rate (*HSG445213*)
@@ -52,6 +64,7 @@ We have chosen 7 main variables:
 * Persons 65 years and over (*AGE775214*)
 * Population per square mile (*POP060210*)
 
+<<<<<<< HEAD
 ### **Home-ownership rate**
 
 
@@ -101,4 +114,6 @@ lp|veterans_range   |counties|democrats|republicans|d_democrats           |d_rep
  <img src="https://i.ibb.co/zQK6qZg/white-alone.png" width="50%">
 
  #### *Description*
+=======
+>>>>>>> 7f907aacfee34e3793e78b28b431922486132efb
 
