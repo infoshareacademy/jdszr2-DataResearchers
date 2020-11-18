@@ -112,8 +112,12 @@ lp|veterans_range   |counties|democrats|republicans|d_democrats           |d_rep
 
  
  <img src="https://i.ibb.co/zQK6qZg/white-alone.png" width="50%">
+<<<<<<< HEAD
 
  #### *Description*
 =======
 >>>>>>> 7f907aacfee34e3793e78b28b431922486132efb
+=======
+>>>>>>> fa58a47d3bd6c3ae850b3344170443bb91d29152
 
+ #### *Description*
