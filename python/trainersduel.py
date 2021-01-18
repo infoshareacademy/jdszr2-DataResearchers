@@ -11,4 +11,4 @@ if __name__ == "__main__":
     pokemon_df, trainers_df, trainers_cp_df = dbloader.read()
     print('dbloader.read() tests:', type(pokemon_df), type(trainers_df), type(trainers_cp_df))
 
-    print(trainers_cp_df)
+    print(trainers_cp_dfd)
