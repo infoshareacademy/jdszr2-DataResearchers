@@ -7,36 +7,47 @@ import pandas as pd
 def start(pok1_id, pok1_type1, pok1_type2, pok1_CP, pok1_speed, pok2_id, pok2_type1, pok2_type2, pok2_CP, pok2_speed, T):
     max_CP = 10000
 
-    # CP updater
-    mod1 = tvec.modifier(pok1_type1, pok2_type1, T)
-    mod2 = tvec.modifier(pok1_type2, pok2_type1, T)
-    mod3 = tvec.modifier(pok1_type1, pok2_type2, T)
-    mod4 = tvec.modifier(pok1_type2, pok2_type2, T)
-    pok1_CP *= mod1 * mod2 * mod3 * mod4
-    pok2_CP *= mod1 * mod2 * mod3 * mod4
+    # Implement speed condition to decide who attacks with modified CP
+
+
+    # CP updater, sppeed selects between two below scenarios:
+    ## p1 has highre speed
+    p1_mod1 = tvec.modifier(pok1_type1, pok2_type1, T)
+    p1_mod2 = tvec.modifier(pok1_type1, pok2_type2, T)
+    p1_mod3 = tvec.modifier(pok1_type2, pok2_type1, T)
+    p1_mod4 = tvec.modifier(pok1_type2, pok2_type2, T)
+    pok1_CP *= p1_mod1 * p1_mod2 * p1_mod3 * p1_mod4
+
+    ## p2 has higher speed
+    p2_mod1 = tvec.modifier(pok2_type1, pok1_type1, T)
+    p2_mod2 = tvec.modifier(pok2_type1, pok1_type2, T)
+    p2_mod3 = tvec.modifier(pok2_type2, pok1_type1, T)
+    p2_mod4 = tvec.modifier(pok2_type2, pok1_type2, T)
+    pok2_CP *= p2_mod1 * p2_mod2 * p2_mod3 * p2_mod4
+
     if pok1_CP > max_CP:
         pok1_CP = max_CP
     if pok2_CP > max_CP:
         pok2_CP = max_CP
 
     # winning rules
-    winner = None
+    loser = None
 
-    if pok1_CP > pok2_CP:
-        winner = pok1_id
+    if pok1_CP < pok2_CP:
+        loser = pok1_id
     else:
-        winner = pok2_id
+        loser = pok2_id
 
     # draw elimination
     if pok1_CP == pok2_CP:
-        if pok1_speed > pok2_speed:
-            winner = pok1_id
-        elif pok1_speed < pok2_speed:
-            winner = pok2_id
+        if pok1_speed < pok2_speed:
+            loser = pok1_id
+        elif pok1_speed > pok2_speed:
+            loser = pok2_id
         else:
-            winner = random.choice([pok1_id, pok2_id])
+            loser = random.choice([pok1_id, pok2_id])
 
-    return winner
+    return loser
 
 
 # RUN AS __main__ TO PERFORM MODULE TESTS
@@ -71,8 +82,8 @@ if __name__ == "__main__":
             pok2_CP = pok2['Combat Power']
             pok2_speed = pok2['speed']
 
-            winner = start(pok1_id, pok1_type1, pok1_type2, pok1_CP, pok1_speed,
+            loser = start(pok1_id, pok1_type1, pok1_type2, pok1_CP, pok1_speed,
                 pok2_id, pok2_type1, pok2_type2, pok2_CP, pok2_speed, T)
 
             print(pok1_id, pok1_type1, pok1_type2, pok1_CP, pok1_speed,
-                pok2_id, pok2_type1, pok2_type2, pok2_CP, pok2_speed, type(T), winner)
+                pok2_id, pok2_type1, pok2_type2, pok2_CP, pok2_speed, type(T), loser)

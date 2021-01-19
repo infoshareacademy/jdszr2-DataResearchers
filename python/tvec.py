@@ -16,8 +16,8 @@ def show(tvec):
     for key, item in tvec.items():
         print(key, item)
 
-def modifier(type1, type2, tvec):
-    key = type1+','+type2
+def modifier(pok1_typeX, pok2_typeX, tvec):
+    key = pok1_typeX+','+pok2_typeX
     default = 1.0
     return tvec.get(key, default)
 

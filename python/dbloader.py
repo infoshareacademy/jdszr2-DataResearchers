@@ -55,12 +55,13 @@ def construct_league(pokemon_df, trainers_cp_df):
                             'maxhp': row['maxhp'],
                             'defense': row['defense'],
                             'spatk': row['spatk'],
+                            'speed': row['speed'],
                             'Combat Power': row['Combat Power'],
                             'pokemonID': row['pokemonID'],
                             'trainername': row2['trainername'],
                             'Combat Power Sum': row2['Combat Power Sum']
                         }
-                        df = pd.DataFrame(data, columns=['trainerID','place','pokename', 'pokelevel', 'type1', 'type2', 'hp', 'maxhp', 'defense', 'spatk', 'Combat Power', 'pokemonID', 'trainername', 'Combat Power Sum'], index=[0])
+                        df = pd.DataFrame(data, columns=['trainerID','place','pokename', 'pokelevel', 'type1', 'type2', 'hp', 'maxhp', 'defense', 'spatk', 'speed', 'Combat Power', 'pokemonID', 'trainername', 'Combat Power Sum'], index=[0])
 
                         league  = pd.concat([league, df]).reset_index(drop=True)
                         print(df)
@@ -76,4 +77,4 @@ if __name__ == "__main__":
     print(pokemon_df.head())
     print(trainers_df.head())
     print(trainers_cp_df.head())
-    #construct_league(pokemon_df, trainers_cp_df)
+    construct_league(pokemon_df, trainers_cp_df)
