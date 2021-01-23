@@ -2,6 +2,10 @@ import pandas as pd
 import sqlite3
 import numpy as np
 
+# ------------------------------------------------------------------------------
+# encapsulation of db loading
+# ------------------------------------------------------------------------------
+
 def add_combat_power(pokemon_df):
     pokemon_df["Combat Power"] = (pokemon_df["hp"]+pokemon_df["attack"]+pokemon_df["defense"]+pokemon_df["spatk"]+pokemon_df["spdef"]+pokemon_df["speed"])*pokemon_df["pokelevel"]*6/100
 
@@ -23,52 +27,6 @@ def read():
 
     return pokemon_df, trainers_df, trainers_cp_df
 
-def get_sample(pokemon_df):
-    return pokemon_df.loc[ (pokemon_df['pokelevel'] > 48) & (pokemon_df['pokelevel'] < 52)]
-
-def construct_league(pokemon_df, trainers_cp_df):
-    pokesimulation_df = pokemon_df.loc[ (pokemon_df['pokelevel'] > 46) & (pokemon_df['pokelevel'] < 54)]
-    selected_trainers_len = len(pokesimulation_df.trainerID.unique() )
-    all_trainers_len = len(trainers_cp_df)
-    part_of_all = selected_trainers_len / all_trainers_len
-
-    print(f'{selected_trainers_len} trainers with pokemons at level between 46 and 54 is {int(part_of_all*100)}% from {all_trainers_len} all trainers')
-
-    # make sure you get all pokemons in the backpack of selected trainers
-    league = pd.DataFrame()
-    for trainerID in pokesimulation_df.trainerID.unique():
-        print(trainerID, type(trainerID))
-        for index, row in pokesimulation_df.iterrows():
-            print(row['trainerID'], type(row['trainerID']), type(trainerID))
-            if np.int64(row['trainerID']) == trainerID:
-                print('create df')
-                for index2, row2 in trainers_cp_df.iterrows():
-                    if row['trainerID'] == row2['trainerID']:
-                        data = {
-                            'trainerID': row['trainerID'],
-                            'place': row['place'],
-                            'pokename': row['pokename'],
-                            'pokelevel': row['pokelevel'],
-                            'type1': row['type1'],
-                            'type2': row['type2'],
-                            'hp': row['hp'],
-                            'maxhp': row['maxhp'],
-                            'defense': row['defense'],
-                            'spatk': row['spatk'],
-                            'speed': row['speed'],
-                            'Combat Power': row['Combat Power'],
-                            'pokemonID': row['pokemonID'],
-                            'trainername': row2['trainername'],
-                            'Combat Power Sum': row2['Combat Power Sum']
-                        }
-                        df = pd.DataFrame(data, columns=['trainerID','place','pokename', 'pokelevel', 'type1', 'type2', 'hp', 'maxhp', 'defense', 'spatk', 'speed', 'Combat Power', 'pokemonID', 'trainername', 'Combat Power Sum'], index=[0])
-
-                        league  = pd.concat([league, df]).reset_index(drop=True)
-                        print(df)
-    league.to_csv('league.csv', index=False)
-
-
-
 
 # RUN AS __main__ TO PERFORM MODULE TESTS
 if __name__ == "__main__":
@@ -77,4 +35,3 @@ if __name__ == "__main__":
     print(pokemon_df.head())
     print(trainers_df.head())
     print(trainers_cp_df.head())
-    construct_league(pokemon_df, trainers_cp_df)
