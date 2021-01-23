@@ -41,12 +41,12 @@ def get_pokemon(type1, type2, df):
     return set12.sample(n=1)
 
 def prep_stat(league_6poks):
-    pok1 = get_pokemon('Water', 'Ice', league_6poks)
-    pok2 = get_pokemon('Ground', 'Rock', league_6poks)
-    pok3 = get_pokemon('Fire', 'Flying', league_6poks)
-    pok4 = get_pokemon('Electric', 'None', league_6poks)
-    pok5 = get_pokemon('Psychic', 'None', league_6poks)
-    pok6 = get_pokemon('Dragon', 'Flying', league_6poks)
+    pok1 = get_pokemon('Dragon', 'Electric', league_6poks)
+    pok2 = get_pokemon('Dragon', 'Fire', league_6poks)
+    pok3 = get_pokemon('Normal', 'None', league_6poks)
+    pok4 = get_pokemon('Electric', 'Flying', league_6poks)
+    pok5 = get_pokemon('Fire', 'Flying', league_6poks)
+    pok6 = get_pokemon('Ground', 'None', league_6poks)
 
     stat_trainer = pok1.append(pok2, ignore_index = True)
     stat_trainer = stat_trainer.append(pok3, ignore_index = True)
