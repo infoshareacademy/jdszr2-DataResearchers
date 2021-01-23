@@ -158,7 +158,13 @@ def duel(trainerID1, trainerID2, trainers, T):
         key = 'pok'+str(i)+'_isaccess'
         trainers.loc[index1, key] = True
         trainers.loc[index2, key] = True
-
+    try:
+        del trainers['pok6_isaccess']
+        del trainers['pok7_isaccess']
+        del trainers['pok8_isaccess']
+        del trainers['pok9_isaccess']
+    except:
+        pass
     return trainers
 
 
