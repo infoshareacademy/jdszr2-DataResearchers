@@ -188,7 +188,6 @@ if __name__ == "__main__":
         trainers_selected = trainers_default.sample(n=size)
         trainers_selected = trainers_selected.append(trainers_rand_stat, ignore_index=False)
         trainerID = trainers_selected['trainerID'].unique()
-        #print(trainers_selected)
         combinations = construct_combinations(trainerID)
         for i, trainer in enumerate(combinations):
             #print('duel', i)
