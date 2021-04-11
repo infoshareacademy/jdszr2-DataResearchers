@@ -7,7 +7,7 @@
 <img src="https://i.pinimg.com/originals/a0/4c/78/a04c78cc4ab87043999d73f6eb4e1ce6.png" width="80%">
 
 #### Does demography determine who people vote for?
-Overview of general demographic statistics, interesting cases and anomalies
+- Overview of general demographic statistics, interesting cases and anomalies
 
 Kaggle link:
 - https://www.kaggle.com/benhamner/2016-us-election#county_facts_dictionary.csv
@@ -36,7 +36,7 @@ python folder contains the project
 <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/red-wine-1590591610.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*" width="80%">
 
 #### How good is your wine?
-Determining the quality of wine on the basis of liquid parameters.
+- Determining the quality of wine on the basis of liquid parameters.
 
 
 Kaggle link:
