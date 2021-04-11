@@ -12,7 +12,7 @@
 Kaggle link:
 - https://www.kaggle.com/benhamner/2016-us-election#county_facts_dictionary.csv
 
-sql folder contains the project
+***sql*** folder contains the project
 
 ## Python - Finished
 
@@ -27,7 +27,7 @@ sql folder contains the project
 Kaggle link:
 - https://www.kaggle.com/lrcusack/pokemontrainers#database.sqlite
 
-python folder contains the project
+***python*** folder contains the project
 
 ## ML - Finished
 
@@ -43,7 +43,7 @@ Kaggle link:
 - Red wine dataset: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009
 - White wine dataset: https://www.kaggle.com/piyushagni5/white-wine-quality
 
-ML folder contains the project
+***ML*** folder contains the project
 
 ## DL - In progress
 
@@ -59,5 +59,5 @@ ML folder contains the project
 Kaggle link:
 - MNIST dataset: https://www.kaggle.com/ngbolin/mnist-dataset-digit-recognizer
 
-DL folder contains the project
+***DL*** folder contains the project
 
